@@ -1,3 +1,4 @@
+import { HttpService } from './../http.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  public albumData: object;
 
-  constructor() { }
+  constructor(
+    private http: HttpService,
+  ) { }
 
   ngOnInit() {
+    this.http.apiData().subscribe(data => {
+      this.albumData = data;
+      console.log(this.albumData);
+    });
   }
 
 }
